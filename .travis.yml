@@ -8,3 +8,17 @@ before install:
 
 script:
   - docker run -e CI=true dime2lo/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "sa-east-1"
+  app: "udocker"
+  env: "Udocker-env"
+  bucket_name: "elasticbeanstalk-sa-east-1-433434055790"
+  bucket_path: "udocker"
+  on:
+    branch: master
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
